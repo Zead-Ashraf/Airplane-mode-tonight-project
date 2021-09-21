@@ -1,0 +1,159 @@
+body, html {
+	height: 100vh;
+	width: 100vw;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #034071;
+}
+
+main {
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+}
+
+section.road {
+	width: 50vw;
+	height: 100vh;
+	position: relative;
+	background-color: #1378bc;
+	border-left: 20px solid rgba(0,0,0,0.25);
+	border-right: 20px solid rgba(0,0,0,0.25);
+	transition: transform 1s;
+	transition-delay: 1s;
+	transform-origin: top; 
+}
+
+
+section.road:after {
+	content: "";
+	width: 2vw;
+	height: 100vh;
+	background: repeat linear-gradient(transparent 0%, transparent 50%, #fff 50%, #fff 100%);
+	background-size: 30px 450px;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	transition: transform 3s;
+	transition-delay: 1s;
+	transform-origin: top;  
+	animation: walk 1s linear infinite;
+}
+
+@keyframes walk {
+	0% {
+		background-position-y: 0px; 
+	}
+
+	100% {
+		background-position-y: 100vh;
+	}
+}
+
+
+section.plane i {
+	font-size: 10em;
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(270deg);
+    z-index: 10000;
+    color: white;
+    transition:  5s;
+
+}
+
+
+main:active section.plane i {
+	font-size: 20em;
+}
+
+
+main:active section.road {
+	transform: scaleX(0.7) scaleY(0);
+	transition-delay: 0;
+	transform-origin: bottom;
+}
+
+
+
+
+section.clouds {
+	width: 100vw;
+	height: 100vh;
+	position: absolute;
+	left: 0;
+	opacity: 0;
+	transition: opacity 3s;
+	transition-delay: 0s;
+}
+
+
+
+section.clouds img {
+	position: absolute;
+	left: 0;
+	animation: animateClouds 5s linear infinite;
+	animation-delay: calc(-1.5s * var(--i))
+}
+
+
+
+
+main:active section.clouds {
+	opacity: 1;
+	transition-delay: 2s;
+}
+
+
+
+
+
+section.clouds-right {
+	width: 100vw;
+	height: 100vh;
+	position: absolute;
+	left: 0;
+	transform: rotate(180deg);	
+	opacity: 0;
+	transition: opacity 3s;
+	transition-delay: 0s;
+}
+
+section.clouds-right img {
+	position: absolute;
+	left: 0;
+	animation: animateCloudsRight 5s linear infinite;
+	animation-delay: calc(-1.5s * var(--i))
+}
+
+
+
+
+main:active section.clouds-right {
+	opacity: 1;
+	transition-delay: 2s;
+}
+
+@keyframes animateClouds {
+	0% {
+		transform: translateY(-100%);
+	}
+
+	100% {
+		transform: translateY(100%);
+	}
+}
+
+
+@keyframes animateCloudsRight {
+	0% {
+		transform: translateY(100%);
+	}
+
+	100% {
+		transform: translateY(-100%);
+	}
+}
